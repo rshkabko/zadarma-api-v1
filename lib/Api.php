@@ -477,20 +477,20 @@ class Api extends Client
      * @param string|array $to Phone number(s), where to send the SMS message (array of numbers can be specified);
      * @param string $message Message (standard text limit applies; the text will be separated into several SMS messages,
      *  if the limit is exceeded);
-     * @param string $callerId Phone number, from which the SMS messages is sent (can be sent only from list of user's
+     * @param string $sender Phone number, from which the SMS messages is sent (can be sent only from list of user's
      *  confirmed phone numbers).
      * @return Sms
      * @throws ApiException
      */
-    public function sendSms($to, $message, $callerId = null)
+    public function sendSms($to, $message, $sender = null)
     {
         $to = array_map([self::class, 'filterNumber'], is_array($to) ? $to : [$to]);
         $params = [
             'number' => implode(',', $to),
             'message' => $message,
         ];
-        if ($callerId) {
-            $params['caller_id'] = $callerId;
+        if ($sender) {
+            $params['sender'] = $sender;
         }
         $data = $this->request('sms/send', $params, 'post');
         return new Sms($data);
