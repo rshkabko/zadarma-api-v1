@@ -1,6 +1,6 @@
 {
-  "name": "zadarma/user-api-v1",
-  "description": "PHP class for Zadarma API",
+  "name": "flamix/zadarma-api-v1",
+  "description": "PHP class for Zadarma API. Forked from official and changed zadarma sender",
   "keywords": [
     "zadarma",
     "api",
